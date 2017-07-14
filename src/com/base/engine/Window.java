@@ -4,15 +4,20 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
+import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 
 public class Window implements Runnable {
 
-	private long window;
+	public long window;
 	public boolean running = false;
+	private GLFWKeyCallback keyCallback;
 
 	public Window(int width, int height, String title) {
 		init(width, height, title);
+		// Sets our keycallback to equal our newly created Input class()
+		glfwSetKeyCallback(window, keyCallback = new Input());		
+
 	}
 
 	public void init(int width, int height, String title) {
@@ -24,6 +29,7 @@ public class Window implements Runnable {
 			System.err.println("GLFW initialization failed!");
 		}
 
+		
 		// Allows our window to be resizable
 		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 

@@ -4,8 +4,9 @@ import org.lwjgl.glfw.GLFWKeyCallback;
 
 public class Game {
 
-	Input input = new Input();
-	public Game() {		
+	
+	public Game(long window) {
+	
 	}
 
 	public void render() {
@@ -14,14 +15,17 @@ public class Game {
 	}
 
 	public void update() {
-
+		
+		Input.update();
 		
 	}
 
 	public void input() {
 
-		if(input.isKeyDown(GLFW.GLFW_KEY_SPACE))
-			System.out.println("Pressed up");
+		if(Input.getKeyDown(GLFW.GLFW_KEY_SPACE))
+			System.out.println("Pressed space");
+		if(Input.getKeyUp(GLFW.GLFW_KEY_SPACE))
+			System.out.println("Pressed released");
 		
 	}
 	

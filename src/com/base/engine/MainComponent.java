@@ -14,7 +14,7 @@ public class MainComponent {
 	public MainComponent() {
 
 		window = new Window(WIDTH, HEIGHT, TITLE);
-		game  = new Game();
+		game  = new Game(window.window);
 	}
 
 	private void start() {
