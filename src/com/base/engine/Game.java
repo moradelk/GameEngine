@@ -3,29 +3,45 @@ import static com.sun.glass.events.KeyEvent.*;
 
 import org.lwjgl.glfw.GLFW;
 
+import com.sun.javafx.geom.Vec3f;
+
 
 
 public class Game {
 
-	
-	
+	private Mesh mesh;
+	private Shader shader;
 	public Game() {
+		mesh = new Mesh();
+		shader = new Shader();
+		Vertex[] vertices = new Vertex[] {
+				new Vertex(new Vec3f(-1,-1,0)) ,				
+				new Vertex(new Vec3f(0,1,0)) ,
+				new Vertex(new Vec3f(1,-1,0))
+		};
+		
+		mesh.addVertices(vertices);
+		shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
+		shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
+		shader.compileShader();
+		
+	}
 	
+
+	public  void render() {
+
+		shader.bind();
+		mesh.draw();
 		
 	}
 
-	public void render() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void update() {
+	public  void update() {
 		
 		Input.update();
 		
 	}
 
-	public void input() {
+	public  void input() {
 
 		
 		if(Input.getKeyDown(VK_SPACE))

@@ -4,7 +4,9 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.glfw.GLFW;
+
+
 
 public class Window implements Runnable {
 
@@ -27,7 +29,6 @@ public class Window implements Runnable {
 			System.err.println("GLFW initialization failed!");
 		}
 
-		
 		// Allows our window to be resizable
 		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 
@@ -48,21 +49,22 @@ public class Window implements Runnable {
 			System.err.println("Could not create our Window!");
 		}
 
-		// creates a bytebuffer object 'vidmode' which then queries
-		// to see what the primary monitor is.
-		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		System.err.println(vidmode.toString());
+
+		
 		// Sets the initial position of our game window.
 		glfwSetWindowPos(window, 100, 100);
 		// Sets the context of GLFW, this is vital for our program to work.
 		glfwMakeContextCurrent(window);
 		// finally shows our created window in all it's glory.
 		glfwShowWindow(window);
+
 	}
 
 	public void update() {
 		// Polls for any window events such as the window closing etc.
 		glfwPollEvents();
+		
+		
 	}
 
 	public void render() {
@@ -71,9 +73,9 @@ public class Window implements Runnable {
 	}
 
 	public void dispose() {
-		glfwDestroyWindow(window);
-		System.err.println("Window.dispose()");
+		glfwDestroyWindow(window);	
 	}
+	
 	@Override
 	public void run() {
 
@@ -95,15 +97,21 @@ public class Window implements Runnable {
 	}
 
 	int getWidth() {
-		return 220;
-	}
+		int  width =  0 ,height = 0;
+		GLFW.glfwSetWindowSize(window, width, height);
+		return width;
+		}
 
 	int getHeight() {
-		return 110;
+		int  width =  0 ,height = 0;
+		GLFW.glfwSetWindowSize(window, width, height);
+		return height;
 	}
 	
 	public boolean isCloseRequested() {
-		
+		if(Input.getKeyUp(GLFW_KEY_ESCAPE)){
+			return true;
+		}
 		return glfwWindowShouldClose(window);
 	}
 }

@@ -3,18 +3,21 @@ package com.base.engine;
 public class MainComponent {
 
 	private Thread thread;
-	public final int WIDTH = 800;
-	public final int HEIGHT = 800;
-	public final String TITLE = "Game Engine";
-	public final double FRAME_CAP = 5000.0;
-	public Window window;
+	private final int WIDTH = 800;
+	private final int HEIGHT = 800;
+	private final String TITLE = "Game Engine";
+	private final double FRAME_CAP = 5000.0;
+	private Window window;
 
 	private Game game;
 	
 	public MainComponent() {
 
 		window = new Window(WIDTH, HEIGHT, TITLE);
+		RenderUtil.initGraphics();
+		System.out.println(RenderUtil.getOpenGlVersion());
 		game  = new Game();
+		
 	}
 
 	private void start() {
@@ -98,6 +101,7 @@ public class MainComponent {
 	}
 
 	private void render() {
+		RenderUtil.clearScreen();
 		game.render();
 		window.render();
 	}
@@ -110,6 +114,7 @@ public class MainComponent {
 
 		MainComponent game = new MainComponent();
 		game.start();
+		
 
 	}
 
