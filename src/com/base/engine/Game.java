@@ -24,6 +24,8 @@ public class Game {
 		shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
 		shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
 		shader.compileShader();
+		shader.addUniform("scale");
+		
 		
 	}
 	
@@ -35,9 +37,13 @@ public class Game {
 		
 	}
 
+	float tmp=0;
 	public  void update() {
 		
 		Input.update();
+		tmp += Time.getDelta();
+		
+		shader.setUniformf("scale", (float) (Math.abs(Math.sin(tmp))));
 		
 	}
 

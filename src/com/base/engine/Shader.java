@@ -5,10 +5,9 @@ import static org.lwjgl.opengl.GL32.*;
 
 import java.util.HashMap;
 
-import org.lwjgl.system.MathUtil;
 
 import com.sun.javafx.geom.Vec3f;
-import com.sun.javafx.geom.Vec4f;
+
 
 public class Shader {
 
