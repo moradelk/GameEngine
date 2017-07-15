@@ -1,12 +1,17 @@
 package com.base.engine;
+import static com.sun.glass.events.KeyEvent.*;
+
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWKeyCallback;
+
+
 
 public class Game {
 
 	
-	public Game(long window) {
 	
+	public Game() {
+	
+		
 	}
 
 	public void render() {
@@ -22,10 +27,23 @@ public class Game {
 
 	public void input() {
 
-		if(Input.getKeyDown(GLFW.GLFW_KEY_SPACE))
+		
+		if(Input.getKeyDown(VK_SPACE))
 			System.out.println("Pressed space");
-		if(Input.getKeyUp(GLFW.GLFW_KEY_SPACE))
+		if(Input.getKeyUp(VK_SPACE))
 			System.out.println("Pressed released");
+		if(Input.getButtonDown(0)) {
+			double xpos[] =  {0} ,ypos[] = {0};
+			GLFW.glfwGetCursorPos(GLFW.glfwGetCurrentContext(), xpos, ypos);
+			System.out.println("Left button pressed at " + xpos[0] + ", " + ypos[0]);
+		}
+			
+		if(Input.getButtonUp(0)) {
+			double xpos[] =  {0} ,ypos[] = {0};
+			GLFW.glfwGetCursorPos(GLFW.glfwGetCurrentContext(), xpos, ypos);
+			System.out.println("Left button released at " + xpos[0] + ", " + ypos[0]);
+		}
+
 		
 	}
 	

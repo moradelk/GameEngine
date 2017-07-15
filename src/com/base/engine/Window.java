@@ -4,19 +4,17 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 
 public class Window implements Runnable {
 
 	public long window;
 	public boolean running = false;
-	private GLFWKeyCallback keyCallback;
+	 
 
 	public Window(int width, int height, String title) {
 		init(width, height, title);
-		// Sets our keycallback to equal our newly created Input class()
-		glfwSetKeyCallback(window, keyCallback = new Input());		
+ 		Input.init();
 
 	}
 
@@ -53,6 +51,7 @@ public class Window implements Runnable {
 		// creates a bytebuffer object 'vidmode' which then queries
 		// to see what the primary monitor is.
 		GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+		System.err.println(vidmode.toString());
 		// Sets the initial position of our game window.
 		glfwSetWindowPos(window, 100, 100);
 		// Sets the context of GLFW, this is vital for our program to work.
