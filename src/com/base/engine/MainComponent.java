@@ -69,7 +69,7 @@ public class MainComponent {
 				game.update();
 				
 				if(frameCounter >= Time.SECOND) {
-					System.out.println(frames + " : " + frameTime);
+					System.out.println(frames );
 					frames = 0;
 					frameCounter = 0;
 				}

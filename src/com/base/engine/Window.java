@@ -97,15 +97,15 @@ public class Window implements Runnable {
 	}
 
 	int getWidth() {
-		int  width =  0 ,height = 0;
-		GLFW.glfwSetWindowSize(window, width, height);
-		return width;
+		int  width[] =  {0} ,height[] = {0};
+		GLFW.glfwGetWindowSize(window, width, height);
+		return width[0];
 		}
 
-	int getHeight() {
-		int  width =  0 ,height = 0;
-		GLFW.glfwSetWindowSize(window, width, height);
-		return height;
+	int getHeight() {		
+		int  width[] =  {0} ,height[] = {0};
+		GLFW.glfwGetWindowSize(window, width, height);		
+		return height[0];
 	}
 	
 	public boolean isCloseRequested() {
