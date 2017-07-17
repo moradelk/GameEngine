@@ -16,9 +16,9 @@ public class Util {
 		FloatBuffer buffer = createFloatBuffer(vertices.length * Vertex.SIZE );
 		
 		for (int i = 0; i< vertices.length ; i++) {
-			buffer.put(vertices[i].getPos().x);
-			buffer.put(vertices[i].getPos().y);
-			buffer.put(vertices[i].getPos().z);
+			buffer.put(vertices[i].getPos().getX());
+			buffer.put(vertices[i].getPos().getY());
+			buffer.put(vertices[i].getPos().getZ());
 			
 		}
 		buffer.flip();

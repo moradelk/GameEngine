@@ -1,7 +1,6 @@
 package com.base.engine;
 
-import com.sun.javafx.geom.Vec3f;
-
+import com.base.math.Vec3f;
 
 public class Vertex {
 	

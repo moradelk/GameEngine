@@ -3,7 +3,10 @@ import static com.sun.glass.events.KeyEvent.*;
 
 import org.lwjgl.glfw.GLFW;
 
-import com.sun.javafx.geom.Vec3f;
+import com.base.math.Vec3f;
+import com.dep.gl.Mesh;
+import com.dep.gl.Shader;
+
 
 
 

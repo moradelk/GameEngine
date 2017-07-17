@@ -1,5 +1,8 @@
 package com.base.engine;
 
+import com.dep.input.Keyboard;
+import com.dep.input.Mouse;
+
 public class Input  {
 
 	private static Keyboard keyboard;
