@@ -3,7 +3,7 @@ import static com.sun.glass.events.KeyEvent.*;
 
 import org.lwjgl.glfw.GLFW;
 
-import com.base.math.Vec3f;
+import com.base.math.Vector3f;
 import com.dep.gl.Mesh;
 import com.dep.gl.Shader;
 
@@ -18,9 +18,9 @@ public class Game {
 		mesh = new Mesh();
 		shader = new Shader();
 		Vertex[] vertices = new Vertex[] {
-				new Vertex(new Vec3f(-1,-1,0)) ,				
-				new Vertex(new Vec3f(0,1,0)) ,
-				new Vertex(new Vec3f(1,-1,0))
+				new Vertex(new Vector3f(-1,-1,0)) ,				
+				new Vertex(new Vector3f(0,1,0)) ,
+				new Vertex(new Vector3f(1,-1,0))
 		};
 		
 		mesh.addVertices(vertices);

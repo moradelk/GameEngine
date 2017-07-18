@@ -1,6 +1,7 @@
 package com.base.engine;
 
-import com.base.math.Vec2f;
+import com.base.math.Quaternion;
+import com.base.math.Vector2f;
 import com.dep.gl.RenderUtil;
 
 public class MainComponent {
@@ -115,18 +116,10 @@ public class MainComponent {
 
 	public static void main(String args[]) {
 
-		Vec2f v1= new Vec2f(1f,-1f);
-		Vec2f v2= new Vec2f(0.f ,0.5f);
-		System.out.println(v1.toString());
-		System.out.println(v2.add(v1).toString());
-		v1.normalize();
-		v2.normalize();
 
-		System.out.println(v1.dot(v2));
-		System.out.println(v2.dot(v1));		/*
 		MainComponent game = new MainComponent();
 		game.start();
-		*/
+		
 
 	}
 
