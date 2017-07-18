@@ -1,8 +1,5 @@
 package com.base.engine;
 
-import com.base.math.Quaternion;
-import com.base.math.Vector2f;
-import com.dep.gl.RenderUtil;
 
 public class MainComponent {
 
