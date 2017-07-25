@@ -3,6 +3,7 @@ import static com.sun.glass.events.KeyEvent.*;
 
 import org.lwjgl.glfw.GLFW;
 
+import com.base.math.Transform;
 import com.base.math.Vector3f;
 import com.dep.gl.Mesh;
 import com.dep.gl.Shader;
@@ -14,6 +15,8 @@ public class Game {
 
 	private Mesh mesh;
 	private Shader shader;
+	private Transform transform;
+	
 	public Game() {
 		mesh = new Mesh();
 		shader = new Shader();
@@ -24,10 +27,13 @@ public class Game {
 		};
 		
 		mesh.addVertices(vertices);
+		
+		transform = new Transform();
+		
 		shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
 		shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
 		shader.compileShader();
-		shader.addUniform("scale");
+		shader.addUniform("transform");
 		
 		
 	}
@@ -36,18 +42,21 @@ public class Game {
 	public  void render() {
 
 		shader.bind();
+		shader.setUniform("transform", transform.getTransformation());
+		
 		mesh.draw();
 		
 	}
 
 	float tmp=0;
+	
 	public  void update() {
 		
 		Input.update();
 		tmp += Time.getDelta();
-		
-		shader.setUniformf("scale", (float) (Math.abs(Math.sin(tmp))));
-		
+		transform.setTranslation((float) Math.sin(tmp),(float) Math.cos(tmp),(float) Math.sin(tmp)) ;
+		transform.setRotation(0f, 0f ,180 * (float) Math.sin(tmp));
+	
 	}
 
 	public  void input() {

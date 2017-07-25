@@ -1,6 +1,7 @@
 package com.dep.gl;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL30.*;
 
 import org.lwjgl.opengl.GL;
 
@@ -22,7 +23,7 @@ public class RenderUtil {
 		glEnable(GL_CULL_FACE);
 		glEnable(GL_DEPTH_TEST);
 		
-		//glEnable(GL_FRAMEBUFFER_SRGB);
+		glEnable(GL_FRAMEBUFFER_SRGB);
 		
 
 	}

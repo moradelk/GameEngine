@@ -5,8 +5,11 @@ import static org.lwjgl.opengl.GL32.*;
 
 import java.util.HashMap;
 
+import com.base.engine.Util;
+import com.base.math.Matrix4f;
+import com.base.math.Vector3f;
 
-import com.sun.javafx.geom.Vec3f;
+
 
 
 public class Shader {
@@ -102,8 +105,14 @@ public class Shader {
 		glUniform1f(uniforms.get(uniformName), value);
 	}
 
-	public void setUniform(String uniformName, Vec3f value) {
-		glUniform3f(uniforms.get(uniformName), value.x,value.y,value.z);
+	public void setUniform(String uniformName, Vector3f value) {
+		glUniform3f(uniforms.get(uniformName), value.getX(),value.getY(),value.getZ());
 	}
+	
+	public void setUniform(String uniformName, Matrix4f value) {
+		glUniformMatrix4fv(uniforms.get(uniformName), true, Util.createFlippedBuffer(value));
+	}
+	
+	
 	
 }
