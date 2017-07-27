@@ -2,6 +2,12 @@ package com.base.math;
 
 public class Transform {
 
+	
+	private static float zNear, zFar;
+	private static float width, height;
+	private static float fov;
+	
+	
 	private Vector3f translation;
 	private Vector3f rotation;
 	private Vector3f scale;
@@ -22,8 +28,25 @@ public class Transform {
 		
 	}
 	
+	public Matrix4f getProjectedTransformation() {
+		
+		Matrix4f transformationMatrix = this.getTransformation();
+		Matrix4f projectionMatrix = new Matrix4f();
+		projectionMatrix.initProjection(fov, width, height, zNear,  zFar);
+		return projectionMatrix.mul(transformationMatrix);
+	}
+	
 	public Vector3f getTranslation() {
 		return translation;
+	}
+
+	public void setProjection(float fov, float width, float height, float zNear, float zFar) {
+
+		Transform.fov=fov;
+		Transform.width=width;
+		Transform.height=height;
+		Transform.zNear=zNear;
+		Transform.zFar=zFar;
 	}
 
 	public void setTranslation(Vector3f translation) {
@@ -41,7 +64,6 @@ public class Transform {
 	public void setRotation(Vector3f rotation) {
 		this.rotation = rotation;
 	}
-
 	public void setRotation(float x, float y, float z) {
 		this.rotation = new Vector3f(x,y,z);
 	}

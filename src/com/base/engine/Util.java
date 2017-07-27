@@ -1,10 +1,11 @@
 package com.base.engine;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
-import org.lwjgl.BufferUtils;
 
 import com.base.math.Matrix4f;
 
@@ -13,34 +14,46 @@ public class Util {
 
 	public static FloatBuffer createFlippedBuffer(Vertex[] vertices) {
 		
-		FloatBuffer buffer = BufferUtils.createFloatBuffer(vertices.length * Vertex.SIZE );
+		ByteBuffer bb = ByteBuffer.allocateDirect(vertices.length * Vertex.SIZE * 4 ); //4 Byte per float
+		bb.order(ByteOrder.nativeOrder());
+		FloatBuffer buffer = bb.asFloatBuffer();
 		
 		for (int i = 0; i< vertices.length ; i++) {
+
 			buffer.put(vertices[i].getPos().getX());
 			buffer.put(vertices[i].getPos().getY());
 			buffer.put(vertices[i].getPos().getZ());
+
 			
 		}
-		buffer.flip();
+		buffer.position(0);		
 		
+	
 		return buffer;
-		
+			
 	}
 
 	
-	public static IntBuffer createFlippedBuffer(int... indices ) {
+	public static IntBuffer createFlippedBuffer(int[] indices ) {
 		
-		IntBuffer buffer = BufferUtils.createIntBuffer(indices.length);
+		ByteBuffer bb = ByteBuffer.allocateDirect(indices.length * Vertex.SIZE * 4 ); //4 Byte per float
+		bb.order(ByteOrder.nativeOrder());
+
+		IntBuffer buffer = bb.asIntBuffer();
 		
 		buffer.put(indices);
-		buffer.flip();
-		
+		buffer.position(0);		
+
 		return buffer;
 		
 	}
 	
 	public static FloatBuffer createFlippedBuffer(Matrix4f value) {
-		FloatBuffer buffer = BufferUtils.createFloatBuffer(4*4);
+
+		ByteBuffer bb = ByteBuffer.allocateDirect(4 * 4 * 4 ); //4 Byte per float
+		bb.order(ByteOrder.nativeOrder());
+		FloatBuffer buffer = bb.asFloatBuffer();
+
 		
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<4; j++) {
@@ -48,7 +61,8 @@ public class Util {
 			}
 		}
 		
-		buffer.flip();
+		buffer.position(0);		
+
 		return buffer;
 	}
 

@@ -88,6 +88,30 @@ public class Matrix4f {
 		return this;
 	}
 
+	public void initProjection(float fov, float width, float height, float zNear, float zFar) {
+		initIdentity();
+		
+		
+		
+		float ratio = width / height;
+		float zDiff = zFar - zNear;
+		float zSum = zFar + zNear;
+		float tanHalfFov = (float) Math.tan(Math.toRadians(fov/2.0));		
+		
+		float mul = ratio * tanHalfFov;
+				
+		
+		m[0][0]=1.0f / mul;
+		m[1][1]=1.0f / tanHalfFov;
+		m[2][2]=zSum/zDiff;
+		m[2][3]= -2 * zFar * zNear / zDiff;
+		m[3][2]=1.0f;
+		
+		m[3][3]=0;
+
+	
+	}
+
 	public Matrix4f mul(Matrix4f r) {
 		Matrix4f res = new Matrix4f();
 

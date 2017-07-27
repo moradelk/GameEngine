@@ -1,10 +1,12 @@
-package com.base.engine;
+package com.dep.lwjgl3;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 import org.lwjgl.glfw.GLFW;
+
+import com.base.engine.Input;
 
 
 
@@ -96,15 +98,15 @@ public class Window implements Runnable {
 
 	}
 
-	int getWidth() {
+	public static int getWidth() {
 		int  width[] =  {0} ,height[] = {0};
-		GLFW.glfwGetWindowSize(window, width, height);
+		GLFW.glfwGetWindowSize(glfwGetCurrentContext(), width, height);
 		return width[0];
 		}
 
-	int getHeight() {		
+	public static int getHeight() {		
 		int  width[] =  {0} ,height[] = {0};
-		GLFW.glfwGetWindowSize(window, width, height);		
+		GLFW.glfwGetWindowSize(glfwGetCurrentContext(), width, height);		
 		return height[0];
 	}
 	

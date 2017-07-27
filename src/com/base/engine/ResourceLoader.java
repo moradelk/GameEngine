@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import com.base.math.Vector3f;
-import com.dep.gl.Mesh;
+import com.dep.lwjgl3.Mesh;
 
 public class ResourceLoader {
 

@@ -1,23 +1,23 @@
 package com.base.engine;
 
-import com.dep.input.Keyboard;
-import com.dep.input.Mouse;
+import com.dep.lwjgl3.Keyboard;
+import com.dep.lwjgl3.Mouse;
 
-public class Input  {
+public class Input {
 
 	private static Keyboard keyboard;
 	private static Mouse mouse;
-	
+
 	public static void init() {
-		
+
 		keyboard = new Keyboard();
 		mouse = new Mouse();
 		keyboard.init();
 		mouse.init();
 	}
-	
+
 	public static void update() {
-		
+
 		keyboard.update();
 		mouse.update();
 	}
@@ -46,6 +46,15 @@ public class Input  {
 	public static boolean getButtonUp(int button) {
 		return mouse.getButtonUp(button);
 
+	}
+
+	public static double getCursorPosX() {
+		return mouse.getCursorPosX();
+
+	}
+
+	public static double getCursorPosY() {
+		return mouse.getCursorPosY();
 	}
 
 }

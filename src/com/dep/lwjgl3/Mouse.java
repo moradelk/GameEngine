@@ -1,4 +1,4 @@
-package com.dep.input;
+package com.dep.lwjgl3;
 
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
@@ -64,6 +64,18 @@ public class Mouse extends GLFWMouseButtonCallback {
 	public boolean getButtonUp(int button) {
 		return upButtons[button];
 
+	}
+
+	public double getCursorPosX() {
+		double xpos[] =  {0} ,ypos[] = {0};
+		GLFW.glfwGetCursorPos(GLFW.glfwGetCurrentContext(), xpos, ypos);
+		return xpos[0];
+	}
+
+	public double getCursorPosY() {
+		double xpos[] =  {0} ,ypos[] = {0};
+		GLFW.glfwGetCursorPos(GLFW.glfwGetCurrentContext(), xpos, ypos);
+		return ypos[0];
 	}
 
 }

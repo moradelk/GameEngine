@@ -1,6 +1,7 @@
 package com.base.engine;
 
-import com.dep.gl.RenderUtil;
+import com.dep.lwjgl3.RenderUtil;
+import com.dep.lwjgl3.Window;
 
 public class MainComponent {
 
@@ -83,13 +84,7 @@ public class MainComponent {
 				frames++;
 			}
 
-			else {
-				try {
-					Thread.sleep(1);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
+
 
 		}
 

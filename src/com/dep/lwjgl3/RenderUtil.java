@@ -1,4 +1,4 @@
-package com.dep.gl;
+package com.dep.lwjgl3;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL30.*;

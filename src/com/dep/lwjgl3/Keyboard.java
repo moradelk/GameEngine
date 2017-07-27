@@ -1,4 +1,4 @@
-package com.dep.input;
+package com.dep.lwjgl3;
 
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 import static org.lwjgl.glfw.GLFW.glfwSetKeyCallback;
