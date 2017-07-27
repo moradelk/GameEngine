@@ -74,6 +74,20 @@ public class Matrix4f {
 	}
 
 
+	public Matrix4f initScale(Vector3f scale) {
+		return initScale(scale.getX(), scale.getY(), scale.getZ());
+	}
+
+	
+	public Matrix4f initScale(float x, float y, float z) {
+		initIdentity();
+		m[0][0] = x;
+		m[1][1] = y;
+		m[2][2] = z;
+		
+		return this;
+	}
+
 	public Matrix4f mul(Matrix4f r) {
 		Matrix4f res = new Matrix4f();
 

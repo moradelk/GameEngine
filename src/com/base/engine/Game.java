@@ -6,6 +6,7 @@ import org.lwjgl.glfw.GLFW;
 import com.base.math.Transform;
 import com.base.math.Vector3f;
 import com.dep.gl.Mesh;
+import com.dep.gl.RenderUtil;
 import com.dep.gl.Shader;
 
 
@@ -23,11 +24,21 @@ public class Game {
 		Vertex[] vertices = new Vertex[] {
 				new Vertex(new Vector3f(-1,-1,0)) ,				
 				new Vertex(new Vector3f(0,1,0)) ,
-				new Vertex(new Vector3f(1,-1,0))
+				new Vertex(new Vector3f(1,-1,0)),
+				new Vertex(new Vector3f(0,-1,1))
 		};
 		
-		mesh.addVertices(vertices);
+		int[] indices = new int[] {0,1,2,   3,1,2,  0,1,3,   0,2,3};
+/*
+		int[] indices = new int[]
+				{	0,1,3,
+					3,1,2,
+					2,1,0,
+					0,2,3};
+*/
+		//mesh.addVertices(vertices, indices );
 		
+		mesh = ResourceLoader.loadMesh("untitled.obj");
 		transform = new Transform();
 		
 		shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
@@ -53,9 +64,10 @@ public class Game {
 	public  void update() {
 		
 		Input.update();
-		tmp += Time.getDelta();
-		transform.setTranslation((float) Math.sin(tmp),(float) Math.cos(tmp),(float) Math.sin(tmp)) ;
-		transform.setRotation(0f, 0f ,180 * (float) Math.sin(tmp));
+		tmp += Time.getDelta()/50;
+		transform.setTranslation(0,0,0) ;
+		transform.setRotation(180 * (float) Math.sin(tmp) ,180 * (float) Math.cos(tmp), 180 * (float) Math.sin(tmp) * (float) Math.cos(tmp));
+		transform.setScale(0.5f,0.5f,0.5f);
 	
 	}
 

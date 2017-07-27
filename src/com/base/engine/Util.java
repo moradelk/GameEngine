@@ -1,6 +1,8 @@
 package com.base.engine;
 
 import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
 
 import org.lwjgl.BufferUtils;
 
@@ -9,13 +11,9 @@ import com.base.math.Matrix4f;
 
 public class Util {
 
-	public static FloatBuffer createFloatBuffer(int size) {
-		return BufferUtils.createFloatBuffer(size);
-	}
-	
 	public static FloatBuffer createFlippedBuffer(Vertex[] vertices) {
 		
-		FloatBuffer buffer = createFloatBuffer(vertices.length * Vertex.SIZE );
+		FloatBuffer buffer = BufferUtils.createFloatBuffer(vertices.length * Vertex.SIZE );
 		
 		for (int i = 0; i< vertices.length ; i++) {
 			buffer.put(vertices[i].getPos().getX());
@@ -28,9 +26,21 @@ public class Util {
 		return buffer;
 		
 	}
+
+	
+	public static IntBuffer createFlippedBuffer(int... indices ) {
+		
+		IntBuffer buffer = BufferUtils.createIntBuffer(indices.length);
+		
+		buffer.put(indices);
+		buffer.flip();
+		
+		return buffer;
+		
+	}
 	
 	public static FloatBuffer createFlippedBuffer(Matrix4f value) {
-		FloatBuffer buffer = createFloatBuffer(4*4);
+		FloatBuffer buffer = BufferUtils.createFloatBuffer(4*4);
 		
 		for(int i=0; i<4; i++) {
 			for(int j=0; j<4; j++) {
@@ -40,6 +50,30 @@ public class Util {
 		
 		buffer.flip();
 		return buffer;
+	}
+
+
+	public static String[] removeEmptyStrings(String[] tokens) {
+		ArrayList<String> result = new ArrayList<String>();
+		for(int i = 0; i< tokens.length; i++) {
+			if(!tokens[i].equals(""))
+				result.add(tokens[i]);
+		}
+		
+		String[] res = new String[result.size()]; 
+
+		result.toArray(res);
+		return res;
+		
+	}
+
+
+	public static int[] toIntArray(Integer[] data) {
+		int[] result = new int[data.length];
+		for(int i = 0; i<data.length; i++)
+			result[i]=data[i].intValue();
+		
+		return result;
 	}
 	
 }
