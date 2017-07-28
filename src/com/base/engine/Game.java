@@ -48,7 +48,7 @@ public class Game {
 		tmp += Time.getDelta()/5;
 		transform.setTranslation(2,2,5) ;
 		transform.setRotation(180 * (float) Math.sin(tmp) ,180 * (float) Math.cos(tmp), 180 * (float) Math.sin(tmp) * (float) Math.cos(tmp));
-		transform.setScale(0.5f,0.7f,0.7f);
+		transform.setScale(0.8f,0.8f,0.8f);
 	
 	}
 

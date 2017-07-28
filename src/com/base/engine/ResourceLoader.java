@@ -23,7 +23,6 @@ public class ResourceLoader {
 
 			shaderReader.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(1);
 		}
@@ -91,7 +90,6 @@ public class ResourceLoader {
 			
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(1);
 		}
