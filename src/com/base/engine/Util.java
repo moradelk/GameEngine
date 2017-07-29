@@ -6,8 +6,8 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 
-
-import com.base.math.Matrix4f;
+import game.math.Matrix4f;
+import game.math.Vertex;
 
 
 public class Util {

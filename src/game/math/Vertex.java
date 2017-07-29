@@ -1,6 +1,4 @@
-package com.base.engine;
-
-import com.base.math.Vector3f;
+package game.math;
 
 public class Vertex {
 	

@@ -5,7 +5,8 @@ import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 
 import com.base.engine.Util;
-import com.base.engine.Vertex;
+
+import game.math.Vertex;
 
 
 public class Mesh {

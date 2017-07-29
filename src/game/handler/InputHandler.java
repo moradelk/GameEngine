@@ -1,17 +1,17 @@
-package com.base.engine;
+package game.handler;
 
-import com.dep.lwjgl3.Keyboard;
-import com.dep.lwjgl3.Mouse;
+import game.modul.KeyboardModul;
+import game.modul.MouseModul;
 
-public class Input {
+public class InputHandler {
 
-	private static Keyboard keyboard;
-	private static Mouse mouse;
+	private static KeyboardModul keyboard;
+	private static MouseModul mouse;
 
 	public static void init() {
 
-		keyboard = new Keyboard();
-		mouse = new Mouse();
+		keyboard = new KeyboardModul();
+		mouse = new MouseModul();
 		keyboard.init();
 		mouse.init();
 	}

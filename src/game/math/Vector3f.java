@@ -1,4 +1,4 @@
-package com.base.math;
+package game.math;
 
 public class Vector3f {
 

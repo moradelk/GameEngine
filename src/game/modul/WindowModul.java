@@ -3,9 +3,6 @@ package game.modul;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-import org.lwjgl.glfw.GLFW;
-
-
 
 
 public class WindowModul {

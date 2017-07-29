@@ -1,10 +1,11 @@
 package com.base.engine;
 import static com.sun.glass.events.KeyEvent.*;
 
-import com.base.math.Transform;
 import com.dep.lwjgl3.Mesh;
 import com.dep.lwjgl3.Shader;
 
+import game.handler.InputHandler;
+import game.math.Transform;
 import game.modul.WindowModul;
 
 
@@ -58,19 +59,19 @@ public class Game {
 	public  void input() {
 
 		
-		if(Input.getKeyDown(VK_SPACE))
+		if(InputHandler.getKeyDown(VK_SPACE))
 			System.out.println("Pressed space");
-		if(Input.getKeyUp(VK_SPACE))
+		if(InputHandler.getKeyUp(VK_SPACE))
 			System.out.println("Pressed released");
-		if(Input.getButtonDown(0)) {
-			double xpos = Input.getCursorPosX();
-			double ypos = Input.getCursorPosY();
+		if(InputHandler.getButtonDown(0)) {
+			double xpos = InputHandler.getCursorPosX();
+			double ypos = InputHandler.getCursorPosY();
 			System.out.println("Left button pressed at " + xpos  + ", " + ypos );
 		}
 			
-		if(Input.getButtonUp(0)) {
-			double xpos = Input.getCursorPosX();
-			double ypos = Input.getCursorPosY();
+		if(InputHandler.getButtonUp(0)) {
+			double xpos = InputHandler.getCursorPosX();
+			double ypos = InputHandler.getCursorPosY();
 			System.out.println("Left button released at " + xpos + ", " + ypos);
 		}
 

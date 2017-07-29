@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import com.base.math.Vector3f;
 import com.dep.lwjgl3.Mesh;
+
+import game.math.Vector3f;
+import game.math.Vertex;
 
 public class ResourceLoader {
 

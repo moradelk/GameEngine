@@ -1,11 +1,11 @@
-package com.dep.lwjgl3;
+package game.modul;
 
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 
-public class Mouse extends GLFWMouseButtonCallback {
+public class MouseModul extends GLFWMouseButtonCallback {
 
 	private final int NUM_MOUSEBUTTONS = 16;
 

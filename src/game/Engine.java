@@ -1,10 +1,14 @@
-package com.base.engine;
+package game;
 
-import com.dep.lwjgl3.RenderUtil;
 
+import com.base.engine.Game;
+import com.base.engine.Time;
+
+import game.handler.GraphicHandler;
+import game.handler.InputHandler;
 import game.handler.WindowHandler;
 
-public class GameEngine {
+public class Engine {
 
 	private final int WIDTH = 800;
 	private final int HEIGHT = 800;
@@ -12,17 +16,21 @@ public class GameEngine {
 	private final double FRAME_CAP = 5000.0;
 	
 	private WindowHandler windowHandler;
+	private GraphicHandler graphicHandler;
 	private Game game;
 	private boolean running=false;
 	
 	
-	public GameEngine() {
+	public Engine() {
 
 		windowHandler = new WindowHandler(0, 0, WIDTH, HEIGHT, TITLE);
 		windowHandler.createWindow();
-		RenderUtil.initGraphics();
-		Input.init();
-		System.out.println(RenderUtil.getOpenGlVersion());
+		graphicHandler = new GraphicHandler();
+		graphicHandler.initGraphics();
+		
+		
+		InputHandler.init();
+		System.out.println(graphicHandler.getOpenGlVersion());
 		game  = new Game();
 		
 	}
@@ -91,7 +99,7 @@ public class GameEngine {
 	}
 
 	private void render() {
-		RenderUtil.clearScreen();
+		graphicHandler.clearScreen();
 		game.render();
 		windowHandler.render();
 	}
@@ -102,7 +110,7 @@ public class GameEngine {
 
 	private void update() {
 		windowHandler.update();
-		Input.update();
+		InputHandler.update();
 		game.update();
 	}
 }

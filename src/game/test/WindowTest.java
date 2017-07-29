@@ -1,12 +1,12 @@
 package game.test;
-import com.base.engine.GameEngine;
+import game.Engine;
 
 public class WindowTest {
 	
 	public static void main(String args[]) {
 
 
-		GameEngine engine= new GameEngine();
+		Engine engine= new Engine();
 		engine.start();
 
 	}

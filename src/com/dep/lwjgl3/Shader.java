@@ -6,8 +6,9 @@ import static org.lwjgl.opengl.GL32.*;
 import java.util.HashMap;
 
 import com.base.engine.Util;
-import com.base.math.Matrix4f;
-import com.base.math.Vector3f;
+
+import game.math.Matrix4f;
+import game.math.Vector3f;
 
 
 

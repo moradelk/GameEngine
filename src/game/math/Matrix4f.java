@@ -1,4 +1,4 @@
-package com.base.math;
+package game.math;
 
 public class Matrix4f {
 
