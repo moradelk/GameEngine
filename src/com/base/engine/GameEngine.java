@@ -1,43 +1,46 @@
 package com.base.engine;
 
 import com.dep.lwjgl3.RenderUtil;
-import com.dep.lwjgl3.Window;
 
-public class MainComponent {
+import game.handler.WindowHandler;
 
-	private Thread thread;
+public class GameEngine {
+
 	private final int WIDTH = 800;
 	private final int HEIGHT = 800;
-	private final String TITLE = "Game Engine";
+	private final String TITLE = "Game Test Screen";
 	private final double FRAME_CAP = 5000.0;
-	private Window window;
-
-	private Game game;
 	
-	public MainComponent() {
+	private WindowHandler windowHandler;
+	private Game game;
+	private boolean running=false;
+	
+	
+	public GameEngine() {
 
-		window = new Window(WIDTH, HEIGHT, TITLE);
+		windowHandler = new WindowHandler(0, 0, WIDTH, HEIGHT, TITLE);
+		windowHandler.createWindow();
 		RenderUtil.initGraphics();
+		Input.init();
 		System.out.println(RenderUtil.getOpenGlVersion());
 		game  = new Game();
 		
 	}
+	
 
-	private void start() {
+	public void start() {
 
-		if (window.running)
+		if (running)
 			return;
 
 		run();
 
 	}
-
+	
 	private void run() {
 
-		thread = new Thread(window, TITLE);
-		thread.start();
 
-		window.running = true;
+		running = true;
 		
 		int frames = 0;
 		long frameCounter = 0;
@@ -47,7 +50,7 @@ public class MainComponent {
 		long lastTime = Time.getTime();
 		double unprocessedTime = 0;
 
-		while (window.running) {
+		while (!windowHandler.isCloseRequested()) {
 
 			boolean render = false;
 
@@ -62,14 +65,9 @@ public class MainComponent {
 				render = true;
 
 				unprocessedTime -= frameTime;
-
-				if (window.isCloseRequested())
-					stop();
 				
 				Time.setDelta(frameTime);
-				
-				game.input();
-				game.update();
+				update();
 				
 				if(frameCounter >= Time.SECOND) {
 					System.out.println(frames );
@@ -92,28 +90,19 @@ public class MainComponent {
 
 	}
 
-	private void stop() {
-		window.running = false;
-
-	}
-
 	private void render() {
 		RenderUtil.clearScreen();
 		game.render();
-		window.render();
+		windowHandler.render();
 	}
-
+	
 	private void cleanUp() {
-		window.dispose();
+		windowHandler.close();;
 	}
 
-	public static void main(String args[]) {
-
-
-		MainComponent game = new MainComponent();
-		game.start();
-		
-
+	private void update() {
+		windowHandler.update();
+		Input.update();
+		game.update();
 	}
-
 }

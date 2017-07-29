@@ -4,7 +4,9 @@ import static com.sun.glass.events.KeyEvent.*;
 import com.base.math.Transform;
 import com.dep.lwjgl3.Mesh;
 import com.dep.lwjgl3.Shader;
-import com.dep.lwjgl3.Window;
+
+import game.modul.WindowModul;
+
 
 
 
@@ -21,7 +23,7 @@ public class Game {
 
 		mesh = ResourceLoader.loadMesh("untitled.obj");
 		transform = new Transform();
-		transform.setProjection(70f,  Window.getWidth(),Window.getHeight(), 0.1f, 1000f);
+		transform.setProjection(70f,  WindowModul.getCurrentWidth(),WindowModul.getCurrentHeight(), 0.1f, 1000f);
 		shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
 		shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
 		shader.compileShader();
@@ -44,11 +46,12 @@ public class Game {
 	
 	public  void update() {
 		
-		Input.update();
+		//Input.update();
 		tmp += Time.getDelta()/5;
 		transform.setTranslation(2,2,5) ;
 		transform.setRotation(180 * (float) Math.sin(tmp) ,180 * (float) Math.cos(tmp), 180 * (float) Math.sin(tmp) * (float) Math.cos(tmp));
 		transform.setScale(0.8f,0.8f,0.8f);
+		input();
 	
 	}
 
