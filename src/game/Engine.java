@@ -1,12 +1,11 @@
 package game;
 
 
-import com.base.engine.Game;
-import com.base.engine.Time;
-
 import game.handler.GraphicHandler;
 import game.handler.InputHandler;
 import game.handler.WindowHandler;
+import game.object.Sphere;
+import game.util.Time;
 
 public class Engine {
 
@@ -25,13 +24,15 @@ public class Engine {
 
 		windowHandler = new WindowHandler(0, 0, WIDTH, HEIGHT, TITLE);
 		windowHandler.createWindow();
+
 		graphicHandler = new GraphicHandler();
 		graphicHandler.initGraphics();
-		
-		
+		graphicHandler.setViewport(0, 0, WIDTH, HEIGHT);	
 		InputHandler.init();
 		System.out.println(graphicHandler.getOpenGlVersion());
+
 		game  = new Game();
+		
 		
 	}
 	

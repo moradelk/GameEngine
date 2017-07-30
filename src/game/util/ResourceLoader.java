@@ -1,13 +1,13 @@
-package com.base.engine;
+package game.util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import com.dep.lwjgl3.Mesh;
-
 import game.math.Vector3f;
 import game.math.Vertex;
+
+import game.object.Sphere;
 
 public class ResourceLoader {
 
@@ -32,7 +32,7 @@ public class ResourceLoader {
 		return shaderSource.toString();
 	}
 
-	public static Mesh loadMesh(String filename) {
+	public static void loadSphere(String filename) {
 
 		String[] splitArray = filename.split("\\.");
 		String extension = splitArray[splitArray.length - 1];
@@ -78,7 +78,6 @@ public class ResourceLoader {
 
 			meshReader.close();
 
-			Mesh mesh = new Mesh();
 
 			Vertex[] vertexData = new Vertex[vertices.size()];
 			vertices.toArray(vertexData);
@@ -86,17 +85,19 @@ public class ResourceLoader {
 			Integer[] indexData = new Integer[indices.size()];
 			indices.toArray(indexData);
 			
-			mesh.addVertices(vertexData, Util.toIntArray(indexData));
+						
+			int[] intIndexData = Util.toIntArray(indexData);
+			Sphere.addVertices(vertexData, intIndexData);
+			System.err.println("Sphere loaded");
 			
-			return mesh;
+			
 			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		return null;
 
 	}
 
-}
+	}

@@ -11,9 +11,12 @@ import static org.lwjgl.opengl.GL11.glClearColor;
 import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glFrontFace;
 import static org.lwjgl.opengl.GL11.glGetString;
+import static org.lwjgl.opengl.GL11.glViewport;
 import static org.lwjgl.opengl.GL30.GL_FRAMEBUFFER_SRGB;
 
 import org.lwjgl.opengl.GL;
+
+import game.object.Sphere;
 
 public class GraphicModul {
 	
@@ -27,8 +30,7 @@ public class GraphicModul {
 	
 	public void initGraphics() {
 		GL.createCapabilities();
-		glClearColor(1,0,1,0);
-		
+		glClearColor(0,0,0,0);
 		glFrontFace(GL_CW);
 		//glEnable(GL_CULL_FACE);
 		//glCullFace(GL_BACK);
@@ -36,7 +38,7 @@ public class GraphicModul {
 		glEnable(GL_DEPTH_TEST);
 		
 		glEnable(GL_FRAMEBUFFER_SRGB);
-		
+		Sphere.init();
 
 	}
 	
@@ -47,6 +49,10 @@ public class GraphicModul {
 	public void setClearColor(float r, float g, float b, float a) {
 		glClearColor(r,g,b,a);
 		
+	}
+
+	public void setViewport(int x, int y, int width, int height) {
+		glViewport(x, y, width, height);
 	}
 
 }

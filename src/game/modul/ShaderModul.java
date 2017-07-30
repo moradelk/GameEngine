@@ -1,25 +1,24 @@
-package com.dep.lwjgl3;
+package game.modul;
 
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL32.*;
 
 import java.util.HashMap;
 
-import com.base.engine.Util;
-
 import game.math.Matrix4f;
 import game.math.Vector3f;
+import game.util.Util;
 
 
 
 
-public class Shader {
+public class ShaderModul {
 
 	private int program;
 	private HashMap<String, Integer> uniforms;
 	
 	
-	public Shader() {
+	public ShaderModul() {
 		program=glCreateProgram();
 		uniforms = new HashMap<String, Integer>();
 		
@@ -33,6 +32,10 @@ public class Shader {
 	public void bind() {
 		glUseProgram(program);
 		
+	}
+	
+	public void unbind() {
+		glUseProgram(0);
 	}
 	
 	public void addUniform(String uniform) {

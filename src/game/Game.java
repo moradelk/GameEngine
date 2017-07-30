@@ -1,12 +1,15 @@
-package com.base.engine;
+package game;
 import static com.sun.glass.events.KeyEvent.*;
-
-import com.dep.lwjgl3.Mesh;
-import com.dep.lwjgl3.Shader;
 
 import game.handler.InputHandler;
 import game.math.Transform;
+import game.math.Vector3f;
+import game.modul.ShaderModul;
 import game.modul.WindowModul;
+import game.object.Sphere;
+import game.object.SphereObject;
+import game.util.ResourceLoader;
+import game.util.Time;
 
 
 
@@ -14,32 +17,24 @@ import game.modul.WindowModul;
 
 public class Game {
 
-	private Mesh mesh;
-	private Shader shader;
-	private Transform transform;
 	
+	private SphereObject sphere;
+	private SphereObject sphere2;
 	public Game() {
-		mesh = new Mesh();
-		shader = new Shader();
+	
 
-		mesh = ResourceLoader.loadMesh("untitled.obj");
-		transform = new Transform();
-		transform.setProjection(70f,  WindowModul.getCurrentWidth(),WindowModul.getCurrentHeight(), 0.1f, 1000f);
-		shader.addVertexShader(ResourceLoader.loadShader("basicVertex.vs"));
-		shader.addFragmentShader(ResourceLoader.loadShader("basicFragment.fs"));
-		shader.compileShader();
-		shader.addUniform("transform");
+	
 		
+		sphere = new SphereObject();
+		sphere2 = new SphereObject();
 		
 	}
 	
 
 	public  void render() {
 
-		shader.bind();
-		shader.setUniform("transform", transform.getProjectedTransformation());
-		
-		mesh.draw();
+		sphere.draw();
+		sphere2.draw();
 		
 	}
 
@@ -49,9 +44,11 @@ public class Game {
 		
 		//Input.update();
 		tmp += Time.getDelta()/5;
-		transform.setTranslation(2,2,5) ;
-		transform.setRotation(180 * (float) Math.sin(tmp) ,180 * (float) Math.cos(tmp), 180 * (float) Math.sin(tmp) * (float) Math.cos(tmp));
-		transform.setScale(0.8f,0.8f,0.8f);
+		float a =(float) Math.cos(tmp);
+		float b = (float) Math.sin(tmp);
+		sphere.setPos(new Vector3f(a,b,10+a+b));
+		sphere2.setPos(new Vector3f(a,-b,10-+a-b));
+
 		input();
 	
 	}

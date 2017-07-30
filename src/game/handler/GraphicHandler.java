@@ -27,5 +27,9 @@ public class GraphicHandler {
 	public void setClearColor(float r, float g, float b, float a) {
 		graphics.setClearColor(r,g,b,a);
 	}
+	
+	public void setViewport(int x, int y, int width, int height) {
+		graphics.setViewport(x,y,width,height);
+	}
 
 }

@@ -1,15 +1,14 @@
-package com.dep.lwjgl3;
+package game.modul;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 
-import com.base.engine.Util;
-
 import game.math.Vertex;
+import game.util.Util;
 
 
-public class Mesh {
+public class MeshModul {
 
 	private int vbo;
 	private int ibo;
@@ -17,7 +16,7 @@ public class Mesh {
 	//private int sizeVertex;
 	private int sizeIndex;
 	
-	public Mesh() {
+	public MeshModul() {
 		
 		vbo = glGenBuffers();
 		ibo = glGenBuffers();
@@ -38,6 +37,8 @@ public class Mesh {
 
 	
 	}
+
+
 	
 	public void draw() {
 		
@@ -48,8 +49,10 @@ public class Mesh {
 		
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 		
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);
-		//glDrawArrays(GL_TRIANGLES, 0, sizeVertex);
+		
+		
 		
 		glDisableVertexAttribArray(0);
 	}
