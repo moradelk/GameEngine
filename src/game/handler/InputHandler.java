@@ -1,5 +1,7 @@
 package game.handler;
 
+
+
 import game.modul.KeyboardModul;
 import game.modul.MouseModul;
 
@@ -8,12 +10,15 @@ public class InputHandler {
 	private static KeyboardModul keyboard;
 	private static MouseModul mouse;
 
+	
 	public static void init() {
 
 		keyboard = new KeyboardModul();
 		mouse = new MouseModul();
+
 		keyboard.init();
 		mouse.init();
+
 	}
 
 	public static void update() {

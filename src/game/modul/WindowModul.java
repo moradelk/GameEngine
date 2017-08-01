@@ -3,8 +3,7 @@ package game.modul;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-
-
+import org.lwjgl.glfw.GLFWWindowSizeCallbackI;
 
 public class WindowModul {
 
@@ -54,17 +53,26 @@ public class WindowModul {
 
 		// finally shows our created window in all it's glory.
 		glfwShowWindow(windowContext);
+
+		glfwSetWindowSizeCallback(windowContext, new GLFWWindowSizeCallbackI() {
+
+			@Override
+			public void invoke(long window, int width, int height) {
+
+				System.out.println("Resize: " + width + ", " + height);
+
+			}
+		});
 	}
 
 	public void update() {
 		glfwPollEvents();
-		
+
 	}
 
 	public void render() {
 		glfwSwapBuffers(windowContext);
 	}
-
 
 	public void resize() {
 
@@ -115,17 +123,19 @@ public class WindowModul {
 		glfwGetWindowSize(windowContext, width, height);
 		return height[0];
 	}
+
 	public static int getCurrentWidth() {
-		int  width[] =  {0} ,height[] = {0};
+		int width[] = { 0 }, height[] = { 0 };
 		glfwGetWindowSize(glfwGetCurrentContext(), width, height);
 		return width[0];
-		}
+	}
 
-	public static int getCurrentHeight() {		
-		int  width[] =  {0} ,height[] = {0};
-		glfwGetWindowSize(glfwGetCurrentContext(), width, height);		
+	public static int getCurrentHeight() {
+		int width[] = { 0 }, height[] = { 0 };
+		glfwGetWindowSize(glfwGetCurrentContext(), width, height);
 		return height[0];
 	}
+
 	public String getTitle() {
 		return title;
 	}

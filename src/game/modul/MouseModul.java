@@ -3,9 +3,11 @@ package game.modul;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWMouseButtonCallback;
+import org.lwjgl.glfw.GLFWCursorEnterCallbackI;
+import org.lwjgl.glfw.GLFWMouseButtonCallbackI;
+import org.lwjgl.glfw.GLFWScrollCallbackI;
 
-public class MouseModul extends GLFWMouseButtonCallback {
+public class MouseModul {
 
 	private final int NUM_MOUSEBUTTONS = 16;
 
@@ -18,7 +20,34 @@ public class MouseModul extends GLFWMouseButtonCallback {
 	
 	public void init() {
 		window=GLFW.glfwGetCurrentContext();
-		GLFW.glfwSetMouseButtonCallback(window, this);
+		GLFW.glfwSetMouseButtonCallback(window, new GLFWMouseButtonCallbackI() {
+			
+			@Override
+			public void invoke(long window, int button, int action, int mods) {
+				
+				buttons[button] = action != GLFW_RELEASE;
+				
+			}
+
+		});
+
+		
+		GLFW.glfwSetScrollCallback(window, new GLFWScrollCallbackI() {
+			
+			@Override
+			public void invoke(long window, double xoffset, double yoffset) {
+				System.out.println("Wheel: " + xoffset + ", " + yoffset);
+				
+			}
+		});
+		
+		GLFW.glfwSetCursorEnterCallback(window, new GLFWCursorEnterCallbackI() {
+			
+			@Override
+			public void invoke(long window, boolean entered) {
+				System.out.println("Offscree: " + !entered);
+			}
+		});
 
 		
 	}
@@ -44,12 +73,6 @@ public class MouseModul extends GLFWMouseButtonCallback {
 	}
 
 	
-	@Override
-	public void invoke(long window, int button, int action, int mods) {
-		
-		buttons[button] = action != GLFW_RELEASE;
-		
-	}
 	
 
 	public boolean getButton(int button) {

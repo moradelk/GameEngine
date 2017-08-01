@@ -2,13 +2,9 @@ package game;
 import static com.sun.glass.events.KeyEvent.*;
 
 import game.handler.InputHandler;
-import game.math.Transform;
 import game.math.Vector3f;
-import game.modul.ShaderModul;
-import game.modul.WindowModul;
-import game.object.Sphere;
+import game.object.GridXY;
 import game.object.SphereObject;
-import game.util.ResourceLoader;
 import game.util.Time;
 
 
@@ -35,6 +31,7 @@ public class Game {
 
 		sphere.draw();
 		sphere2.draw();
+		GridXY.draw();
 		
 	}
 

@@ -61,38 +61,34 @@ public class ResourceLoader {
 					continue;
 				else if (tokens[0].equals("v")) {
 
-					Vector3f vertex = new Vector3f(Float.valueOf(tokens[1]), Float.valueOf(tokens[2]), Float.valueOf(tokens[3]));
+					Vector3f vertex = new Vector3f(Float.valueOf(tokens[1]), Float.valueOf(tokens[2]),
+							Float.valueOf(tokens[3]));
 					vertices.add(new Vertex(vertex));
-					
+
 				}
 
 				else if (tokens[0].equals("f")) {
 
-					indices.add(Integer.parseInt(tokens[1])-1);
-					indices.add(Integer.parseInt(tokens[2])-1);
-					indices.add(Integer.parseInt(tokens[3])-1);
-					
+					indices.add(Integer.parseInt(tokens[1]) - 1);
+					indices.add(Integer.parseInt(tokens[2]) - 1);
+					indices.add(Integer.parseInt(tokens[3]) - 1);
+
 				}
 
 			}
 
 			meshReader.close();
 
-
 			Vertex[] vertexData = new Vertex[vertices.size()];
 			vertices.toArray(vertexData);
-			
+
 			Integer[] indexData = new Integer[indices.size()];
 			indices.toArray(indexData);
-			
-						
+
 			int[] intIndexData = Util.toIntArray(indexData);
 			Sphere.addVertices(vertexData, intIndexData);
 			System.err.println("Sphere loaded");
-			
-			
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -100,4 +96,4 @@ public class ResourceLoader {
 
 	}
 
-	}
+}

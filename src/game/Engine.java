@@ -27,7 +27,7 @@ public class Engine {
 
 		graphicHandler = new GraphicHandler();
 		graphicHandler.initGraphics();
-		graphicHandler.setViewport(0, 0, WIDTH, HEIGHT);	
+
 		InputHandler.init();
 		System.out.println(graphicHandler.getOpenGlVersion());
 

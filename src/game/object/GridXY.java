@@ -1,21 +1,24 @@
 package game.object;
 
 
+
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
+
+import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL30.*;
 
+
+import game.math.Vector3f;
 import game.math.Vertex;
-import game.util.ResourceLoader;
 import game.util.Util;
 
-public class Sphere {
+//4 Points at (0,0),..,(1,1)
+public class GridXY {
 
 	private static int vbo;
 	private static int ibo;
 	private static int vao;
-	private static final String FILENAME = "sphere.obj";
 	private static int sizeIndex;
 
 
@@ -23,12 +26,23 @@ public class Sphere {
 
 		vbo = glGenBuffers();
 		ibo = glGenBuffers();
-		vao = glGenVertexArrays();
-		sizeIndex=0;
-		ResourceLoader.loadSphere(FILENAME);
 
+		vao = glGenVertexArrays();
+		
+		sizeIndex=0;
+
+		Vertex[] vertices = {
+				new Vertex(new Vector3f(0,0,0)),
+				new Vertex(new Vector3f(1,0,0)),
+				new Vertex(new Vector3f(0,1,0)),
+				new Vertex(new Vector3f(1,1,0))};
+		int[] indices = {0,1,2,2,1,3};
+		addVertices(vertices, indices);
+		
 		glBindVertexArray(vao);
 
+
+		addVertices(vertices, indices);
 		glEnableVertexAttribArray(0);
 
 		glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -38,13 +52,10 @@ public class Sphere {
 		
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		
- 
 		glBindVertexArray(0);
-		
-		
 	}
 
-	public static void addVertices(Vertex[] vertices, int[] indices) {
+	private static void addVertices(Vertex[] vertices, int[] indices) {
 
 		sizeIndex = indices.length;
 
@@ -57,6 +68,7 @@ public class Sphere {
 	}
 
 	public static void draw() {
+
 
 		glBindVertexArray(vao);
 		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);
