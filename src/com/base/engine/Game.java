@@ -1,12 +1,10 @@
 package com.base.engine;
-import static com.sun.glass.events.KeyEvent.*;
+import static java.awt.event.KeyEvent.*;
 
 import com.base.math.Transform;
 import com.dep.lwjgl3.Mesh;
 import com.dep.lwjgl3.Shader;
 import com.dep.lwjgl3.Window;
-
-
 
 
 public class Game {
